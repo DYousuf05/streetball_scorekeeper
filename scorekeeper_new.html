@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streetball Scorekeeper</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <section class="section"></section>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-full">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-0.25by0.125">
+                            <img src="./thumbnail.jpg" alt="">
+                        </figure>
+                    </div>
+                    <header class="card-header has-background-dark">
+                      <p class="card-header-title is-centered is-size-2 has-text-white">Streetball Scorekeeper</p>
+                      <!-- <button class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                      </button> -->
+                    </header>
+                    <div class="card-content">
+                      <div class="content">
+                        <div id="gameSelect" class="dropdown is-fullwidth">
+                          <div id="gameDropdown" class="dropdown-trigger">
+                            <button class="button has-background-warning is-fullwidth" aria-haspopup="true" aria-controls="gameDropdown">
+                              <span>Game Select</span>
+                              <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                              </span>
+                            </button>
+                          </div>
+                          <div class="dropdown-menu is-fullwidth" role="menu">
+                            <div class="dropdown-content">
+                                <a href="#" onclick="gameChange(event, this)" id="classic" class="dropdown-item is-full-width">
+                                  <span class="icon-text">
+                                    <span class="icon is-medium">
+                                      <i class="fas fa-basketball-ball fa-lg symbol"></i>
+                                    </span>
+                                    <span class="is-size-6" ><strong>Classic</strong></span>
+                                  </span>
+                                  <p>Regular match between two players/teams</p>
+                                </a>
+
+                                <a href="#" onclick="gameChange(event, this)" id="kings" class="dropdown-item is-full-width">
+                                  <span class="icon-text">
+                                    <span class="icon is-medium">
+                                      <i class="fa-solid fa-crown fa-lg symbol"></i>
+                                    </span>
+                                    <span class="is-size-6" ><strong>King's Court</strong></span>
+                                  </span>
+                                  <p>Repeated 1-point matches to achieve a certain number of wins before other players</p>
+                                </a>
+                              
+                                <a href="#" onclick="gameChange(event, this)" id="horse" class="dropdown-item is-full-width">
+                                  <span class="icon-text">
+                                    <span class="icon is-medium">
+                                      <i class="fa-solid fa-horse-head fa-lg symbol"></i>
+                                    </span>
+                                    <span class="is-size-6" ><strong>H.O.R.S.E</strong></span>
+                                  </span>
+                                  <p>Create a shot that other players have to make, anyone who doesn't make it receives a letter</p>
+                                </a>
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-4"><strong>Current Game Type: </strong><span id="gameType">Classic</span></div>
+
+                        <table id="scoreTable" class="table is-bordered is-fullwidth">
+                          <thead>
+                            <tr>
+                              <th>Player</th>
+                              <th id="amountCol">Letters</th>
+                              <th id="addCol">+1 Letter</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Player 1</td>
+                              <td></td>
+                              <td>
+                                <button id="playerAdd1" class="button has-background-info addColButton">Add</button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Player 2</td>
+                              <td></td>
+                              <td>
+                                <button id="playerAdd2" class="button has-background-info addColButton">Add</button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Player 3</td>
+                              <td></td>
+                              <td>
+                                <button id="playerAdd3" class="button has-background-info addColButton">Add</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <h1 id="scoreLabel" class="title is-1"> <span id="score1">0</span> to <span id="score2">0</span></h1>
+                        <p class="subtitle">Use the buttons to keep track of the game score!</p>
+                        
+                        <label for="playTo" class="label is-medium is-inline">Playing To</label>
+                        <div class="select is-rounded">
+                            <select name="Winning Score" id="playTo">
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="7">7</option>
+                                <option value="11">11</option>
+                                <option value="21">21</option>
+                            </select>
+                        </div>
+
+                        <label for="playerNum" class="label is-medium is-inline ml-3  is-justify-content-end">No. of Players</label>
+                        <div class="select is-rounded">
+                            <select name="Number of Players" id="playerNum" disabled>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+
+                      </div>
+                    </div>
+                    <footer class="card-footer">
+                        <button id="add1" class="is-primary button card-footer-item">+1 Player 1</button>
+                        <button id="add2" class="is-info button card-footer-item">+1 Player 2</button>
+                        <button id="reset" class="is-danger button card-footer-item">Reset</button>
+                    </footer>
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scorekeeper.js"></script>
+</body>
+</html>
